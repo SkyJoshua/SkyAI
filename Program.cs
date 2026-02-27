@@ -86,6 +86,11 @@ public class Program
                 return;
             }
 
+            if (content.StartsWith("s.source"))
+            {
+                await Utils.SendReplyAsync(ChannelCache, channelId, $"{ping} You can find my source code here: https://github.com/SkyJoshua/SkyAI");
+            }
+
             if (!content.StartsWith("s.ai"))
                 return;
 

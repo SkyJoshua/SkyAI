@@ -20,6 +20,7 @@ public class Program
     const int MaxResponseLength = 2048;
     const string ModelName = "llama3.1:latest";
     const string prefix = "s.";
+    const string sourceLink  = "https://github.com/SkyJoshua/SkyAI";
 
     private static readonly Dictionary<long, Channel> channelCache = new();
     private static readonly Dictionary<long, List<ChatMessage>> ChatHistory = new();
@@ -68,10 +69,10 @@ public class Program
             if (string.IsNullOrWhiteSpace(message.Content))
                 return;
 
-            var content   = message.Content;
-            var channelId = message.ChannelId;
-            var member    = await message.FetchAuthorMemberAsync();
-            var ping      = $"«@m-{member.Id}»";
+            var content     = message.Content;
+            var channelId   = message.ChannelId;
+            var member      = await message.FetchAuthorMemberAsync();
+            var ping        = $"«@m-{member.Id}»";
 
             if (content.StartsWith($"{prefix}cm"))
             {
@@ -82,7 +83,7 @@ public class Program
 
             if (content.StartsWith($"{prefix}source"))
             {
-                await Utils.SendReplyAsync(channelCache, channelId, $"{ping} You can find my source code here: https://github.com/SkyJoshua/SkyAI");
+                await Utils.SendReplyAsync(channelCache, channelId, $"{ping} You can find my source code here: {sourceLink}");
             }
 
             if (!content.StartsWith($"{prefix}ai"))
